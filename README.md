@@ -1,74 +1,35 @@
-# Getting Started with Create React App
+# ReScript로 TodoList 만들기
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![화면 기록 2022-10-15 오후 11 33 37](https://user-images.githubusercontent.com/60822846/195992097-a8bc402f-e9fb-4597-a773-2a5ed356a8dc.gif)
 
-## Available Scripts
+## ReScript란?
 
-In the project directory, you can run:
+ReScript 공식문서에 따르면.. ReScript는 JavaScript를 사랑하지는 않지만, 자바스크립트의 중요성을 인정하는 사람들을 위한 언어라고 합니다.. (저는 자바스크립트 좋아합니다..!) 
 
-### npm run re:script
+## 장점
++ JavaScript보다 빠르다. (Faster than JavaScript)
++ 죽은 코드를 잘 제거해 준다. (High Quality Dead Code Elimination)
++ 작은 JavaScript코드로 컴파일된 결과물이 출력된다. (Tiny JS Output)
++ 반복문이 빠르다. (Fast Iteration Loop)
++ 출력이 읽기 쉬우며 뛰어난 상호운용성을 갖는다. (Readable Output & Great Interop)
++ 코드 구조를 보존한다. (Preservation of Code Structure)
 
-Runs the rescript compiler
+## 후기
+일단 처음 마주쳤을 때는 TypeScript도 그랬듯이 JavaScript와 비슷할 것이라 생각했다. 하지만, 거의 다른 언어라는 생각이 들정도로 따로 공부가 필요함을 느끼게 되었다. 사용해보면서 가장 인상깊었던 것은 파이프 문법이었다. 
+```javascript
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+let handleSubmit = e => {
+  e.preventDefault();
+  dispatch(AddTodo(state.inputValue));
+  dispatch(ClearInput())
+}
+```
+위와 같은 코드가 존재했을 때, ReScript의 파이프 문법을 사용하면 아래와 같이 표현할 수 있어 흐름에 집중할 수 있음을 느끼게 되었다.👍
+```javascript
+let handleSubmit = e => {
+  // e.preventDefault()도 이런식으로 호출할 수 있음
+  e->ReactEvent.Form.preventDefault
+  state.inputValue->AddTodo->dispatch
+  ClearInput->dispatch
+}
+```
