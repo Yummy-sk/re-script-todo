@@ -2,6 +2,12 @@
 
 ![화면 기록 2022-10-15 오후 11 33 37](https://user-images.githubusercontent.com/60822846/195992097-a8bc402f-e9fb-4597-a773-2a5ed356a8dc.gif)
 
+```
+yarn install
+
+yarn start & yarn start:re
+```
+
 ## ReScript란?
 
 ReScript 공식문서에 따르면.. ReScript는 JavaScript를 사랑하지는 않지만, 자바스크립트의 중요성을 인정하는 사람들을 위한 언어라고 합니다.. (저는 자바스크립트 좋아합니다..!) 
